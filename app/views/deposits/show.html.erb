@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @deposit.email %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @deposit.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @deposit.author %>
+</p>
+
+<p>
+  <strong>Creation date:</strong>
+  <%= @deposit.creation_date %>
+</p>
+
+<p>
+  <strong>Project url:</strong>
+  <%= @deposit.project_url %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @deposit.status %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @deposit.state %>
+</p>
+
+<%= link_to 'Edit', edit_deposit_path(@deposit) %> |
+<%= link_to 'Back', deposits_path %>

@@ -1,0 +1,28 @@
+%p#notice= notice
+%h1 Listing Deposits
+%table
+  %thead
+    %tr
+      %th Email
+      %th Title
+      %th Author
+      %th Creation date
+      %th Project url
+      %th Status
+      %th State
+      %th{:colspan => "3"}
+  %tbody
+    - @deposits.each do |deposit|
+      %tr
+        %td= deposit.email
+        %td= deposit.title
+        %td= deposit.author
+        %td= deposit.creation_date
+        %td= deposit.project_url
+        %td= deposit.status
+        %td= deposit.state
+        %td= link_to 'Show', deposit
+        %td= link_to 'Edit', edit_deposit_path(deposit)
+        %td= link_to 'Destroy', deposit, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Deposit', new_deposit_path

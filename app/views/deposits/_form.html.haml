@@ -1,0 +1,39 @@
+= form_for(@deposit) do |f|
+  - if @deposit.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@deposit.errors.count, "error")
+        prohibited this deposit from being saved:
+      %ul
+        - @deposit.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :email
+    %br/
+    = f.text_field :email
+  .field
+    = f.label :title
+    %br/
+    = f.text_field :title
+  .field
+    = f.label :author
+    %br/
+    = f.text_field :author
+  .field
+    = f.label :creation_date
+    %br/
+    = f.date_select :creation_date
+  .field
+    = f.label :project_url
+    %br/
+    = f.text_field :project_url
+  .field
+    = f.label :status
+    %br/
+    = f.text_field :status
+  .field
+    = f.label :state
+    %br/
+    = f.text_field :state
+  .actions
+    = f.submit

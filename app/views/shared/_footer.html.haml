@@ -1,0 +1,73 @@
+%footer.container-fluid.s-lib-side-borders{:role => "contentinfo"}
+  .row.footer-info
+    %h2.sr-only library Website footer information
+    .col-md-3.col-sm-3.col-xs-12{"aria-label" => "contact us", :role => "region"}
+      .dropdown{"aria-labelledby" => "address"}
+        %a.dropdown-toggle.footer-link{"aria-label" => "contact us", "data-toggle" => "dropdown", :href => "#"}
+          %span.footerheading
+            Contact Us:
+            %b.caret
+        %ul.dropdown-menu
+          %li
+            %a{"aria-labelledby" => "Employee Directory", :href => "http://www.library.illinois.edu/people/phone.php"} Employee Directory
+          %li
+            %a{"aria-labelledby" => "General contact information", :href => "http://www.library.illinois.edu/secondary/contactUs.html"} General contact information
+          %li
+            %a{"aria-label" => "Submit your feedback and suggestions", "aria-labelledby" => "Feedback and suggestions", :href => "https://illinois.edu/fb/sec/1454867"} Feedback and suggestions
+      %span.text-block University Library
+      %span.text-block University of Illinois at Urbana-Champaign
+      %span.text-block 1408 W. Gregory Dr. | Urbana, IL 61801
+      %span.text-block 217.333.2290
+      .footer-block-top-space
+        %span.text-block
+          %a.footer-link{:href => "https://www.facebook.com/universitylibrary"}
+            %span.fa.fa-facebook.fa-lg.footer-icon-social{"aria-label" => "facebook"}
+            %small Find us on Facebook
+        %span.text-block
+          %a.footer-link{:href => "http://www.library.illinois.edu/friends/make-a-gift/"}
+            %span.fa.fa-gift.fa-lg.footer-icon-social{"aria-label" => "make a gift"}
+            %small Make a Gift
+    .col-md-3.col-sm-3.col-xs-12{"aria-label" => "information for", :role => "region"}
+      %span.footerheading Information for:
+      .row
+        .col-md-6
+          %span.text-block
+            %a.footer-link{:href => "http://www.library.illinois.edu/ugl/"} Undergraduates
+          %span.text-block
+            %a.footer-link{:href => "http://www.library.illinois.edu/learn/users/gradstudents.html"} Graduate Students
+          %span.text-block
+            %a.footer-link{:href => "http://www.library.illinois.edu/learn/users/faculty.html"} Faculty
+          %span.text-block
+            %a.footer-link{:href => "http://www.library.illinois.edu/learn/users/alumni.html"} Alumni
+          %span.text-block
+            %a.footer-link{:href => "http://www.library.illinois.edu/learn/users/visitors.html"} Visitors
+        .col-md-6
+          %span.text-block
+            %a.footer-link{:href => "http://www.library.illinois.edu/learn/users/affiliates.html"} Affiliated Organizations
+          %span.text-block
+            %a.footer-link{:href => "http://www.library.illinois.edu/learn/users/usersdisabilities.html"} Users with Disabilities
+          %span.text-block
+            %a.footer-link{:href => "http://guides.library.illinois.edu/distance_learners/"} Distance Learners
+          %span.text-block
+            %a.footer-link{:href => "http://www.library.illinois.edu/staff/"} Library Staff
+    .col-md-3.col-sm-3.col-xs-12{"aria-label" => "feedback", :role => "region"}
+      %span.footerheading Feedback
+      %span.text-block
+        %a.footer-link{:href => "https://illinois.edu/fb/sec/887006"} Suggest an item for purchase
+      %span.text-block
+        %a.footer-link{"aria-label" => "Submit your feedback and suggestions", :href => "https://illinois.edu/fb/sec/1454867"} Give us feedback/suggestions
+    #vertical.col-md-3.col-sm-3.col-xs-12{"aria-label" => "about the site", :role => "region"}
+      %span.footerheading About this site
+      %span.text-block
+        %a.footer-link{:href => "http://www.vpaa.uillinois.edu/policies/web_privacy.cfm"} Privacy
+      .footer-block-top-space
+        %a{"aria-label" => "Federal Depository Library Program website link", :href => "http://www.library.illinois.edu/doc/"}
+          = image_tag('fdlp_logo.png',                      |
+            alt: 'Federal Depository Library Program Logo') |
+  .row.lg-copyright-footer
+    .col-md-12.copyright-footer{"aria-label" => "university library copyright info"}
+      %p
+        %a{"aria-label" => "University of Illinois website link", :href => "http://illinois.edu"}
+          = image_tag('illinois_wordmark_footer.png', |
+            alt: 'University of Illinois Logo')       |
+      %p © 2014 University of Illinois Board of Trustees

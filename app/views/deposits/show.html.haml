@@ -1,0 +1,25 @@
+%p#notice= notice
+%p
+  %strong Email:
+  = @deposit.email
+%p
+  %strong Title:
+  = @deposit.title
+%p
+  %strong Author:
+  = @deposit.author
+%p
+  %strong Creation date:
+  = @deposit.creation_date
+%p
+  %strong Project url:
+  = @deposit.project_url
+%p
+  %strong Status:
+  = @deposit.status
+%p
+  %strong State:
+  = @deposit.state
+= link_to 'Edit', edit_deposit_path(@deposit)
+|
+= link_to 'Back', deposits_path

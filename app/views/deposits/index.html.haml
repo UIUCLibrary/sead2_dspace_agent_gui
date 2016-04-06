@@ -1,6 +1,6 @@
 %p#notice= notice
-%h1 Listing Deposits
-%table
+%h1 Deposits
+%table.table.table-striped#deposits
   %thead
     %tr
       %th Email
@@ -26,3 +26,18 @@
         %td= link_to 'Destroy', deposit, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
 = link_to 'New Deposit', new_deposit_path
+
+:javascript
+  $(function() {
+    $('.deposits').DataTable({
+      // ajax: ...,
+      // autoWidth: false,
+      // pagingType: 'full_numbers',
+      // processing: true,
+      // serverSide: true,
+
+      // Optional, if you want full pagination controls.
+      // Check dataTables documentation to learn more about available options.
+      // http://datatables.net/reference/option/pagingType
+    });
+  })

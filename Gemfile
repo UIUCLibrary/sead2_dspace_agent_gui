@@ -29,6 +29,8 @@ gem 'haml'
 gem 'bootstrap-sass', '~> 3.3.6'
 # font awesome
 gem 'font-awesome-sass', '~> 4.5.0'
+# jquery datatables
+gem 'jquery-datatables-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

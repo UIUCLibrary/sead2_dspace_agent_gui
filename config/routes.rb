@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   resources :deposits
+
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post], as: :auth # used by omniauth
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

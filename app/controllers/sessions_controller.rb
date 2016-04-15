@@ -9,24 +9,18 @@ class SessionsController < ApplicationController
   def create
     auth_hash = request.env['omniauth.auth']
     if auth_hash and auth_hash[:uid]
-      # username = auth_hash[:uid].split('@').first
-      user = User.find_or_create_by(uid: auth_hash[:uid], email: auth_hash[:info][:email])
-      if user and user.enabled
-        return_url = clear_and_return_return_path
-        sign_in user
-        #We can access other information via auth_hash[:extra][:raw_info][key]
-        #where key is a string from config/shibboleth.yml (and of course these
-        #have to correspond to passed attributes)
-        redirect_to return_url
-        return
-      end
+      return_url = clear_and_return_return_path
+      user = User.find_or_create_by!(uid: auth_hash[:uid], email: auth_hash[:info][:email])
+      set_current_user(user)
+      redirect_to return_url
+    else
+      redirect_to root_url
     end
-    flash['error'] = 'Sign-in failed.'
-    redirect_to root_url
   end
 
   def destroy
-    sign_out
+    unset_current_user
+    clear_and_return_return_path
     redirect_to root_url
   end
 
@@ -42,8 +36,8 @@ class SessionsController < ApplicationController
   protected
 
   def clear_and_return_return_path
-    return_url = session[:return_to] || session[:referer] || admin_root_path
-    session[:return_to] = session[:referer] = nil
+    return_url = session[:login_return_uri] || session[:login_return_referer] || root_path
+    session[:login_return_uri] = session[:login_return_referer] = nil
     reset_session
     return_url
   end

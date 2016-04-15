@@ -1,0 +1,17 @@
+- provide(:title, 'Sign In')
+- provide(:body_id, 'signin')
+- if Rails.env.development?
+  %p DEVELOPMENT: Sign in as admin / jotunheim
+.panel.panel-default.signin
+  .panel-heading
+    %h3.panel-title Sign In
+  .panel-body
+    = form_for(:sessions, url: auth_path(:password)) do |f|
+      .form-group
+        = f.label :username
+        = f.text_field :username, class: 'form-control'
+      .form-group
+        = f.label :password
+        = f.password_field :password, class: 'form-control'
+      .form-group
+        = f.submit 'Sign In', class: 'btn btn-primary'

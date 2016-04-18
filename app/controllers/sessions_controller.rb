@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   def destroy
     unset_current_user
     clear_and_return_return_path
-    redirect_to root_url
+    redirect_to root_url, :notice => 'Signed out!'
   end
 
   def new

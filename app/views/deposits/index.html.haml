@@ -1,5 +1,10 @@
 %p#notice= notice
 %h1 Deposits
+- if current_user
+  Welcome #{current_user.uid.split('@').first}!
+  = button_to 'Sign Out', signout_path, method: 'delete'
+- else
+  = button_to 'Login', '/auth/developer'
 %table.table.table-striped#deposits
   %thead
     %tr

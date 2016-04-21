@@ -62,13 +62,13 @@ class DepositsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_deposit
-      @deposit = Deposit.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_deposit
+    @deposit = Deposit.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def deposit_params
-      params.require(:deposit).permit(:email, :title, :author, :creation_date, :project_url, :status, :state)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def deposit_params
+    params.require(:deposit).permit(:email, :title, :creator, :creation_date, :abstract, :project_url, :status)
+  end
 end

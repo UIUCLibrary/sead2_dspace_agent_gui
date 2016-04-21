@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'deposits/index'
+
+  get 'deposits/show'
+
   resources :users
   resources :deposits
 

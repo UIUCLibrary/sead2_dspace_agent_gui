@@ -5,6 +5,7 @@ class CreateDeposits < ActiveRecord::Migration
       t.string :title
       t.string :author
       t.date :creation_date
+      t.text :abstract
       t.string :project_url
       t.string :status
       t.string :state

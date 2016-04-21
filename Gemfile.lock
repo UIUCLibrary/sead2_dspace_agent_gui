@@ -137,6 +137,8 @@ GEM
     rake (11.1.2)
     rdoc (4.2.2)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     ruby_parser (3.8.1)
       sexp_processor (~> 4.1)
     sass (3.4.22)
@@ -190,6 +192,7 @@ DEPENDENCIES
   omniauth-shibboleth
   pg (~> 0.15)
   rails (= 4.2.5)
+  rest-client
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring

@@ -8,29 +8,35 @@
 %table.table.table-striped#deposits
   %thead
     %tr
-      %th Email
+      -#%th Email
+      %th ID
       %th Title
       %th Creator
       %th Creation date
       %th Abstract
       %th Project url
       %th Status
+      %th Select
 
       %th{:colspan => "3"}
   %tbody
     - @deposits.each do |deposit|
       %tr
-        %td= deposit.email
+        -#%td= deposit.email
+        %td= deposit.id
         %td= deposit.title
         %td= deposit.creator
         %td= deposit.creation_date
         %td= deposit.abstract
         %td= deposit.project_url
         %td= deposit.status
+        %td= check_box_tag('submit', value = '1', checked = false)
 
         %td= link_to 'Show', deposit
         %td= link_to 'Edit', edit_deposit_path(deposit)
         %td= link_to 'Destroy', deposit, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= button_to 'Submit'
 %br/
 = link_to 'New Deposit', new_deposit_path
 
@@ -47,4 +53,4 @@
       // http://datatables.net/reference/option/pagingType
     });
   })
-Status API Training Shop Blog About
+-#Status API Training Shop Blog About

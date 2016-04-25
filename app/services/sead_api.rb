@@ -14,18 +14,31 @@ class SeadApi
     if response.body
       ro_list = JSON.parse(response.body)
       ro_list.select { |ro|
-        ro['Status'].length == 3 and ro['Status'][0]['stage'] == 'Receipt Acknowledged'
+        @ro_status = ro['Status'][0]['stage']
+        ro['Status'].length == 3 and @ro_status == 'Receipt Acknowledged'
       }.map { |ro|
         agg_id = CGI.escape(ro['Aggregation']['Identifier'])
         RestClient.get("https://seadva-test.d2i.indiana.edu/sead-c3pr/api/researchobjects/#{agg_id}")
       }.map { |ro|
         attrs    = JSON.parse ro
-        d = Deposit.find_or_initialize_by(title: attrs['Aggregation']['Title'])
-        d.title    = attrs['Aggregation']['Title']
+        current_title = attrs['Aggregation']['Title']
+
+        if Deposit.where(:title => current_title).blank?
+          Deposit.new do |d|
+            d.title    = attrs['Aggregation']['Title']
+            d.creator  = attrs['Aggregation']['Creator']
+            d.abstract = attrs['Aggregation']['Abstract']
+            d.creation_date = attrs['Aggregation']['Creation Date']
+            d.save
+          end
+        end
+
+
+        # d = Deposit.find_or_initialize_by(title: attrs['Aggregation']['Title'])
         # d.creator  = attrs['Aggregation']['Creator']
         # d.abstract = attrs['Aggregation']['Abstract']
-        # d.date     = attrs['Aggregation']['Creation Date']
-        d.save
+        # d.creation_date     = attrs['Aggregation']['Creation Date']
+        # d.save
       }
     end
 

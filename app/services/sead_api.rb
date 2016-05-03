@@ -15,6 +15,7 @@ class SeadApi
       ro_list = JSON.parse(response.body)
       ro_list.select { |ro|
         @ro_status = ro['Status'][0]['stage']
+        @ro_status_final = ro['Status'][2]['stage']
         ro['Status'].length == 3 and @ro_status == 'Receipt Acknowledged'
       }.map { |ro|
         agg_id = CGI.escape(ro['Aggregation']['Identifier'])
@@ -25,22 +26,20 @@ class SeadApi
 
         if Deposit.where(:title => current_title).blank?
           Deposit.new do |d|
-            d.title    = attrs['Aggregation']['Title']
-            d.creator  = attrs['Aggregation']['Creator']
-            d.abstract = attrs['Aggregation']['Abstract']
+            d.title         = attrs['Aggregation']['Title']
+            d.creator       = attrs['Aggregation']['Creator']
+            d.abstract      = attrs['Aggregation']['Abstract']
             d.creation_date = attrs['Aggregation']['Creation Date']
+            d.status        = @ro_status
             d.save
           end
         end
-
-
-        # d = Deposit.find_or_initialize_by(title: attrs['Aggregation']['Title'])
-        # d.creator  = attrs['Aggregation']['Creator']
-        # d.abstract = attrs['Aggregation']['Abstract']
-        # d.creation_date     = attrs['Aggregation']['Creation Date']
-        # d.save
       }
     end
 
+  end
+
+  def self.update_status
+    
   end
 end

@@ -24,17 +24,10 @@ class DepositsController < ApplicationController
   # POST /deposits
   # POST /deposits.json
   def create
-    @deposit = Deposit.new(deposit_params)
-
-    respond_to do |format|
-      if @deposit.save
-        format.html { redirect_to @deposit, notice: 'Deposit was successfully created.' }
-        format.json { render :show, status: :created, location: @deposit }
-      else
-        format.html { render :new }
-        format.json { render json: @deposit.errors, status: :unprocessable_entity }
-      end
-    end
+    runner = Sead2DspaceAgent::Runner.new
+    runner.run
+    params[:deposit_ids]
+    redirect_to root_url
   end
 
   # PATCH/PUT /deposits/1

@@ -46,7 +46,7 @@ gem 'omniauth-shibboleth'
 
 gem 'haml'
 gem 'haml-rails'
-gem 'rest-client'
+gem 'rest-client', '>= 1.8.0'
 gem 'excon'
 
 group :development, :test do

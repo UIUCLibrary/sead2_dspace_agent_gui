@@ -1,2 +1,7 @@
-%h1 Deposits#show
+%h1=@deposit[:title]
+%h2
+  - @deposit[:creator].each do |creator|
+    = creator
+
+
 %p Find me in app/views/deposits/show.html.haml

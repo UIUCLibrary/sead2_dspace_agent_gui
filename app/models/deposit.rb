@@ -1,5 +1,7 @@
 class Deposit < ActiveRecord::Base
-  SeadApi.sync_researchobjects
+  serialize :creator
+  sead_api = SeadApi.new
+  sead_api.sync_researchobjects
 
   include Sead2DspaceAgent
 end

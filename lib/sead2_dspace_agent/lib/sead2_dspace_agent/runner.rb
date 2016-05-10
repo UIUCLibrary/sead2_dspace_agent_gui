@@ -67,7 +67,7 @@ module Sead2DspaceAgent
 
           # Deposit AR into DSpace
           begin
-            @logger.info "Uplading #{ar.title} to DSpace item #{ro.dspace_id} at #{ro.dspace_handle}"
+            @logger.info "Uploading #{ar.title} to DSpace item #{ro.dspace_id} at #{ro.dspace_handle}"
             dspace_connection.update_item_bitstream(ar.title, ar.file_url, ar.size)
             @logger.info "Success"
           rescue => e

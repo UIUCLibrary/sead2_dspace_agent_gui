@@ -10,6 +10,8 @@ class DepositsController < ApplicationController
   # GET /deposits/1
   # GET /deposits/1.json
   def show
+    @deposit = Deposit.find( params[:id] )
+    t = true
   end
 
   # GET /deposits/new
@@ -28,6 +30,10 @@ class DepositsController < ApplicationController
     runner.run
     params[:deposit_ids]
     redirect_to root_url
+  end
+
+  def complete
+    Deposit.update_all(["completed_at = ?", Time.now], @deposit.status = "Success", :id => params[:deposit_ids])
   end
 
   # PATCH/PUT /deposits/1

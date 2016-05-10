@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 20160421153456) do
     t.string   "title"
     t.string   "creator"
     t.date     "creation_date"
+    t.text     "abstract"
     t.string   "project_url"
     t.string   "status"
     t.string   "state"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.text     "abstract"
   end
 
   create_table "users", force: :cascade do |t|

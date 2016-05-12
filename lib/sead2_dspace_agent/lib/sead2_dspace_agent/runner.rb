@@ -16,6 +16,9 @@ module Sead2DspaceAgent
 
     def run
 
+      deposit = Deposit.new
+      @current_deposit = deposit.id
+
       # Establish SEAD connection
       sead_connection = SeadConnection.new
       @logger.info 'SEAD connection established'
@@ -34,7 +37,7 @@ module Sead2DspaceAgent
         @logger.info "Processing research object: #{ro.metadata[:id]}"
 
         # Set status to pending
-        sead_connection.update_status('Pending', 'Processing research object', ro)
+        sead_connection.update_status('Pending', "'Accept research object to deposit: http://localhost:3000/deposits/'#{ro.metadata[:id]}'", ro)
         @logger.info 'Status set to Pending'
 
         # Create the DSpace item

@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   resources :users, :deposits
 
+  resources :deposits do
+    post :accept, on: :member, as: :accept
+  end
+
   root 'deposits#index'
 
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post], as: :auth # used by omniauth

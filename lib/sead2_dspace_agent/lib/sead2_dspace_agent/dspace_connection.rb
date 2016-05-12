@@ -75,7 +75,7 @@ module Sead2DspaceAgent
                 chunk = response.socket.read(len)
               ensure
                 read_bytes += len
-                p "read #{read_bytes} of #{size} bytes expected"
+                # p "read #{read_bytes} of #{size} bytes expected"
                 response.socket.read 2 # \r\n
               end
               return chunk.to_s

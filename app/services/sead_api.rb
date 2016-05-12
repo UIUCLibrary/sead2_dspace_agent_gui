@@ -1,4 +1,5 @@
 # require 'config/config.yml'
+# see: https://www.getdonedone.com/building-rails-dashboard-app-donedone-api/
 class SeadApi
 
   def initialize
@@ -17,7 +18,7 @@ class SeadApi
       ro_list.select { |ro|
         @ro_status = ro['Status'][0]['stage']
         # @ro_status_final = ro['Status'][2]['stage']
-        # ro['Status'].length == 1 and @ro_status == 'Receipt Acknowledged'
+        ro['Status'].length == 1 and @ro_status == 'Receipt Acknowledged'
       }.map { |ro|
         agg_id = CGI.escape(ro['Aggregation']['Identifier'])
         RestClient.get("https://seadva-test.d2i.indiana.edu/sead-c3pr/api/researchobjects/#{agg_id}")
@@ -40,10 +41,9 @@ class SeadApi
 
   end
 
-  def self.update_status
-    if ro['Status'].length == 3
-      d = Deposit.new
-      d.status = @ro_status_final
-    end
+  def update_status(stage, message, research_object)
+    RestClient.post(research_object.status_url,
+                    {reporter: @repository_id, stage: stage, message: message}.to_json,
+                    {content_type: :json, accept: :json}) if Sead2DspaceAgent::CONFIG['env'] == 'production'
   end
 end

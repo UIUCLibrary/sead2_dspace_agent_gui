@@ -1,7 +1,16 @@
-%h1=@deposit[:title]
-%h2
+= form_tag(accept_deposit_path) do
+ %h2= @deposit[:title]
+ %h4
   - @deposit[:creator].each do |creator|
-    = creator
+   = creator
+ \
+ = @deposit[:abstract]
+ \
+ %div.btn-group.btn-group-vertical
+  = label_tag 'accept_accepted', 'Accept'
+  = radio_button_tag :accept, 'true'
+  = label_tag '', 'Reject'
+  = radio_button_tag :accept, 'false', :checked
 
+ = submit_tag 'Submit'
 
-%p Find me in app/views/deposits/show.html.haml

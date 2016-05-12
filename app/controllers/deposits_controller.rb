@@ -26,15 +26,30 @@ class DepositsController < ApplicationController
   # POST /deposits
   # POST /deposits.json
   def create
-    runner = Sead2DspaceAgent::Runner.new
-    runner.run
-    params[:deposit_ids]
-    redirect_to root_url
+    @deposit = Deposit.new(deposit_params)
+
+    respond_to do |format|
+      if @deposit.save
+        format.html { redirect_to @deposit, notice: 'Deposit was successfully created.' }
+        format.json { render :show, status: :created, location: @deposit }
+      else
+        format.html { render :new }
+        format.json { render json: @deposit.errors, status: :unprocessable_entity }
+      end
+    end
+    # runner = Sead2DspaceAgent::Runner.new
+    # deposit = Deposit.find_by(params[:id])
+    #
+    # # if deposit
+    # runner.run
+    # # end
+    # params[:deposit_ids]
+    # redirect_to root_url
   end
 
-  def complete
-    Deposit.update_all(["completed_at = ?", Time.now], @deposit.status = "Success", :id => params[:deposit_ids])
-  end
+  # def complete
+  #   Deposit.update_all(["completed_at = ?", Time.now], @deposit.status = "Success", :id => params[:deposit_ids])
+  # end
 
   # PATCH/PUT /deposits/1
   # PATCH/PUT /deposits/1.json
@@ -59,6 +74,13 @@ class DepositsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # POST /deposits/1/accept
+  def accept
+    @deposit = Deposit.find(params[:id])
+    redirect_to deposits_url, notice: "Deposit #{@deposit.id} accepted!"
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.

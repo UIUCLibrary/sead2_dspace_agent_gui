@@ -21,25 +21,34 @@ class SeadApi
         ro['Status'].length == 1 and @ro_status == 'Receipt Acknowledged'
       }.map { |ro|
         agg_id = CGI.escape(ro['Aggregation']['Identifier'])
-        RestClient.get("https://seadva-test.d2i.indiana.edu/sead-c3pr/api/researchobjects/#{agg_id}")
+        RestClient.get("#{@ro_base_url}/#{agg_id}")
       }.map { |ro|
-        attrs    = JSON.parse ro
-        current_title = attrs['Aggregation']['Title']
+        @attrs    = JSON.parse ro
 
+        # checking for unique title to create new record on database
+        current_title = @attrs['Aggregation']['Title']
         if Deposit.where(:title => current_title).blank?
           Deposit.new do |d|
-            d.title         = attrs['Aggregation']['Title']
-            d.creator       = Array.wrap attrs['Aggregation']['Creator']
-            d.abstract      = attrs['Aggregation']['Abstract']
-            d.creation_date = attrs['Aggregation']['Creation Date']
+            d.title         = @attrs['Aggregation']['Title']
+            d.creator       = Array.wrap @attrs['Aggregation']['Creator']
+            d.abstract      = @attrs['Aggregation']['Abstract']
+            d.creation_date = @attrs['Aggregation']['Creation Date']
             d.status        = @ro_status
             d.save
           end
         end
       }
     end
-
   end
+
+  # get research object to deposit
+  def get_ro
+    ore_url  = @attrs['Aggregation']['@id']
+    response = RestClient.get(ore_url)
+    # this returns error. need to make this work to post all the metadata
+    # ResearchObject.new response
+  end
+
 
   def update_status(stage, message, research_object)
     RestClient.post(research_object.status_url,

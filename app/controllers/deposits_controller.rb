@@ -78,6 +78,16 @@ class DepositsController < ApplicationController
   # POST /deposits/1/accept
   def accept
     @deposit = Deposit.find(params[:id])
+    # if accept = true then run code to process the ro
+    # else run code to reject it
+    if :accept == true
+      sead_api = SeadApi.new
+      dspace_connection = DspaceConnection.new
+      ro = sead_api.get_ro
+
+
+    end
+
     redirect_to deposits_url, notice: "Deposit #{@deposit.id} accepted!"
   end
 

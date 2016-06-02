@@ -23,8 +23,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'haml'
-
 # bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
 # font awesome
@@ -48,10 +46,13 @@ gem 'haml'
 gem 'haml-rails'
 gem 'rest-client', '>= 1.8.0'
 gem 'excon'
+gem 'faraday'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :development do

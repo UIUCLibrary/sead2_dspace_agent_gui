@@ -1,10 +1,7 @@
 require 'test_helper'
 
-class DepositTest < ActiveSupport::TestCase
+class StatusTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-
-  test "sead_api"
-
 end

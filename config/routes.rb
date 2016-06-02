@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'deposits/show'
+  resources :sync, only: [:index]
 
   resources :users, :deposits
 

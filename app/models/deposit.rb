@@ -1,7 +1,9 @@
 class Deposit < ActiveRecord::Base
+  has_many :statuses, dependent: :destroy
   serialize :creator
-  sead_api = SeadApi.new
-  sead_api.sync_researchobjects
 
-  include Sead2DspaceAgent
+  def self.sync_from_api
+    SeadApi.sync_deposits
+  end
+
 end

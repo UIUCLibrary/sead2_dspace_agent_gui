@@ -1,0 +1,128 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://seadva-test.d2i.indiana.edu/sead-c3pr/api/repositories/ideals/researchobjects
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.1.19
+      Date:
+      - Thu, 02 Jun 2016 19:53:37 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '276'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-transform
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '[{"Aggregation":{"Title":"IDEALS Test Dataset","Identifier":"urn:uuid:574dbb4de4b0b3e857298c3e"},"Repository":"ideals","Status":[{"date":"May
+        31, 2016 12:27:14 PM","reporter":"SEAD-C3PR","stage":"Receipt Acknowledged","message":"request
+        recorded and processing will begin"}]}]'
+    http_version: 
+  recorded_at: Thu, 02 Jun 2016 19:53:37 GMT
+- request:
+    method: get
+    uri: https://seadva-test.d2i.indiana.edu/sead-c3pr/api/researchobjects/urn:uuid:574dbb4de4b0b3e857298c3e
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx/1.1.19
+      Date:
+      - Thu, 02 Jun 2016 19:53:42 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '4401'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-transform
+      Access-Control-Allow-Origin:
+      - "*"
+    body:
+      encoding: UTF-8
+      string: '{ "Publication Callback" : "https://sead2-beta.ncsa.illinois.edu/spaces/curations/574dbb4de4b0b3e857298c3e/status?key=0LBmIgHgPS",
+        "License" : "All Rights Reserved", "Rights Holder" : "http://orcid.org/0000-0002-8307-8844",
+        "Aggregation Statistics" : { "Data Mimetypes" : ["application/pdf", "image/png"],
+        "Number of Datasets" : 2, "Number of Collections" : 1, "Max Dataset Size"
+        : "3958667", "Total Size" : "4058813", "Max Collection Depth" : "0" }, "Aggregation"
+        : { "Uploaded By" : "http://orcid.org/0000-0002-8307-8844", "Title" : "IDEALS
+        Test Dataset", "Creation Date" : "31-05-2016", "Creator" : ["Bill Ingram"],
+        "Abstract" : "This dataset is for capturing all metadata and mapping them
+        into DC terms", "Identifier" : "urn:uuid:574dbb4de4b0b3e857298c3e", "@type"
+        : "Aggregation", "Publishing Project" : "https://sead2-beta.ncsa.illinois.edu/spaces/568ebd96e4b01d13f5ced3f7",
+        "@id" : "https://seadva-test.d2i.indiana.edu/sead-c3pr/api/researchobjects/urn:uuid:574dbb4de4b0b3e857298c3e/oremap#aggregation"
+        }, "Preferences" : { "Purpose" : "Testing-Only", "Affiliations" : "University
+        of Illinois at Urbana-Champaign" }, "Repository" : "ideals", "Environment
+        Key" : "0LBmIgHgPS", "@context" : ["https://w3id.org/ore/context", { "Affiliations"
+        : "http://sead-data.net/terms/affiliations", "Grant Number" : "http://sead-data.net/terms/GrantNumber",
+        "Uploaded By" : "http://purl.org/dc/elements/1.1/creator", "Data Mimetypes"
+        : "http://purl.org/dc/elements/1.1/format", "SAS Variable Name" : "http://ecgs.ncsa.illinois.edu/gsis/sas/vars",
+        "Number of Datasets" : "http://sead-data.net/terms/datasetcount", "Publication
+        Callback" : "http://sead-data.net/terms/publicationcallback", "Title" : "http://purl.org/dc/elements/1.1/title",
+        "Number of Collections" : "http://sead-data.net/terms/collectioncount", "Bibliographic
+        Citation" : "http://purl.org/dc/terms/bibliographicCitation", "Funding Institution"
+        : "http://sead-data.net/terms/FundingInstitution", "License" : "http://purl.org/dc/terms/license",
+        "Related Publications" : "http://sead-data.net/terms/RelatedPublications",
+        "Bearer Token" : "http:sead-data.net/vocab/rfc6750/bearer-token", "Time Periods"
+        : "http://purl.org/dc/terms/PeriodOfTime", "Rights Holder" : "http://purl.org/dc/terms/rightsHolder",
+        "Contact" : "http://purl.org/dc/terms/contact", "Aggregation Statistics" :
+        "http://sead-data.net/terms/publicationstatistics", "Creation Date" : "http://purl.org/dc/terms/created",
+        "SAS Spatial Geocode" : "http://ecgs.ncsa.illinois.edu/gsis/sas/geocode",
+        "Audience" : "http://purl.org/dc/terms/audience", "ODM2 Variable Name" : "http://vocabulary.odm2.org/variablename",
+        "Max Dataset Size" : "http://sead-data.net/terms/maxdatasetsize", "Creator"
+        : "http://purl.org/dc/terms/creator", "Total Size" : "tag:tupeloproject.org,2006:/2.0/files/length",
+        "Alternative Title" : "http://purl.org/dc/terms/alternative", "Max Collection
+        Depth" : "http://sead-data.net/terms/maxcollectiondepth", "References" : "http://purl.org/dc/terms/references",
+        "Test me" : "https://test.org", "Abstract" : "http://purl.org/dc/terms/abstract",
+        "Dataset Description" : "http://sead-data.net/terms/datasetdescription", "Aggregation"
+        : "http://sead-data.net/terms/aggregation", "Preferences" : "http://sead-data.net/terms/publicationpreferences",
+        "Primary/Initial Publication" : "http://sead-data.net/terms/PrimaryPublication",
+        "CSDMS Standard Name" : "http://csdms.colorado.edu/wiki/CSN_Searchable_List",
+        "Keywords" : "http://sead-data.net/terms/Keywords", "Repository" : "http://sead-data.net/terms/requestedrepository",
+        "Identifier" : "http://purl.org/dc/elements/1.1/identifier", "Test2" : "https://test.org2.org2",
+        "Publishing Project" : "http://sead-data.net/terms/publishingProject", "Access"
+        : "http://sead-data.net/terms/access", "Cost" : "http://sead-data.net/terms/cost",
+        "Unit" : "http://ecgs.ncsa.illinois.edu/gsis/sas/unit/udunits2", "Is Referenced
+        By" : "http://sead-data.net/vocab/isReferencedBy", "Principal Investigator(s)"
+        : "http://sead-data.net/terms/PrincipalInvestigator", "Environment Key" :
+        "http://sead-data.net/terms/environmentkey", "Date and Time" : "http://purl.org/dc/terms/date",
+        "Purpose" : "http://sead-data.net/vocab/publishing#Purpose" }], "Affiliations"
+        : [], "Status" : [{ "date" : "May 31, 2016 12:27:14 PM", "reporter" : "SEAD-C3PR",
+        "stage" : "Receipt Acknowledged", "message" : "request recorded and processing
+        will begin" }] }'
+    http_version: 
+  recorded_at: Thu, 02 Jun 2016 19:53:41 GMT
+recorded_with: VCR 3.0.3

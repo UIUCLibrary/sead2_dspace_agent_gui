@@ -11,23 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421153456) do
+ActiveRecord::Schema.define(version: 20160527173326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "deposits", force: :cascade do |t|
-    t.string   "email"
     t.string   "title"
     t.string   "creator"
-    t.date     "creation_date"
     t.text     "abstract"
-    t.string   "project_url"
-    t.string   "status"
     t.string   "state"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "publication_callback"
+    t.text     "license"
+    t.string   "rights_holder"
+    t.date     "created"
+    t.string   "identifier"
+    t.string   "ore_url"
   end
+
+  create_table "statuses", force: :cascade do |t|
+    t.datetime "date"
+    t.string   "reporter"
+    t.string   "stage"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "deposit_id"
+  end
+
+  add_index "statuses", ["deposit_id"], name: "index_statuses_on_deposit_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string "uid"
@@ -37,4 +51,5 @@ ActiveRecord::Schema.define(version: 20160421153456) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
+  add_foreign_key "statuses", "deposits"
 end

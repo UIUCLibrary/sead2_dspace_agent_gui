@@ -37,19 +37,7 @@ class DepositsController < ApplicationController
         format.json { render json: @deposit.errors, status: :unprocessable_entity }
       end
     end
-    # runner = Sead2DspaceAgent::Runner.new
-    # deposit = Deposit.find_by(params[:id])
-    #
-    # # if deposit
-    # runner.run
-    # # end
-    # params[:deposit_ids]
-    # redirect_to root_url
   end
-
-  # def complete
-  #   Deposit.update_all(["completed_at = ?", Time.now], @deposit.status = "Success", :id => params[:deposit_ids])
-  # end
 
   # PATCH/PUT /deposits/1
   # PATCH/PUT /deposits/1.json
@@ -100,6 +88,6 @@ class DepositsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def deposit_params
-    params.require(:deposit).permit(:email, :title, :creator, :creation_date, :abstract, :project_url, :status)
+    params.require(:deposit).permit(:email, :title, :creator, :creation, :abstract, :project_url, :status)
   end
 end

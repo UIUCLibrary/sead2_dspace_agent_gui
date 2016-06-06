@@ -31,6 +31,16 @@ class SeadApi
     end
   end
 
+  def self.update_status(status)
+    response = conn.post do |req|
+      req.url status.url
+      req.headers['Content-Type'] = 'application/json'
+      req.body = status.to_json
+    end
+    status.date = DateTime.parse(response.headers['date'])
+    status.save
+  end
+
   private
 
     def self.sync_deposit_detail(identifier)
@@ -53,14 +63,17 @@ class SeadApi
         deposit.created = DateTime.parse(api_deposit_detail['Aggregation']['Creation Date'])
         deposit.ore_url = api_deposit_detail['Aggregation']['@id']
 
+        new_record = deposit.new_record?
         deposit.save
 
         sync_deposit_statuses(deposit, api_deposit_detail['Status'])
+
+        send_receipt(deposit) if new_record
       end
     end
 
-    def self.sync_deposit_statuses(deposit, statuses)
-      statuses.each do |api_status|
+    def self.sync_deposit_statuses(deposit, api_statuses)
+      api_statuses.each do |api_status|
         status = Status.find_or_initialize_by(deposit: deposit, date: DateTime.parse(api_status['date']))
         status.reporter = api_status['reporter']
         status.stage = api_status['stage']
@@ -68,6 +81,11 @@ class SeadApi
         status.save
         status
       end
+    end
+
+    def self.send_receipt(deposit)
+      status = deposit.statuses.create(reporter: 'IDEALS', stage: 'Pending', message: 'Processing research object')
+      SeadApi.update_status(status)
     end
 
 

@@ -1,9 +1,6 @@
 %h1 Deposits
-- if current_user
-  Welcome #{current_user.uid.split('@').first}!
-  = button_to 'Sign Out', signout_path, method: 'delete'
-- else
-  = button_to 'Login', '/auth/developer'
+%p
+  = link_to 'Sync', '/sync', class: 'btn btn-warning'
 %table.table.table-striped#deposits
   %thead
     %tr
@@ -13,7 +10,6 @@
       %th License
       %th Rights Holder
       %th Abstract
-      %th Select
 
       %th{:colspan => '3'}
   %tbody
@@ -25,15 +21,10 @@
         %td= deposit.license
         %td= deposit.rights_holder
         %td= deposit.abstract
-        %td= check_box_tag('deposit_ids[]', value = 'deposit.id', checked = false)
 
         %td= link_to 'Show', deposit
         %td= link_to 'Edit', edit_deposit_path(deposit)
         %td= link_to 'Destroy', deposit, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= button_to 'Submit', method: :post
-%br/
-= link_to 'Sync', '/sync'
 
 :javascript
   $(function() {

@@ -11,8 +11,16 @@ Rails.application.routes.draw do
   root 'deposits#index'
 
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post], as: :auth # used by omniauth
-  match '/signin', to: 'sessions#new', via: 'get'
-  match '/signout', to: 'sessions#destroy', via: 'delete'
+  match '/signin', to: 'sessions#new', via: [:get, :post]
+  match '/signout', to: 'sessions#destroy', via: [:get, :post]
+
+
+  # # authentication routes
+  # match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+  # match '/login', to: 'sessions#new', as: :login, via: [:get, :post]
+  # match '/logout', to: 'sessions#destroy', as: :logout, via: [:get, :post]
+  #
+  # match '/auth/failure', to: 'sessions#unauthorized', as: :unauthorized, via: [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

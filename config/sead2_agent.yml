@@ -1,0 +1,6 @@
+development:
+  local_mode: true
+test:
+  local_mode: true
+production:
+  local_mode: false

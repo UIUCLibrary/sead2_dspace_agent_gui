@@ -11,6 +11,8 @@
  * file per style scope.
  */
 
+@import "libguide-style";
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
@@ -18,78 +20,4 @@
 @import "font-awesome";
 
 @import "variables";
-
-.library-header {
-    position: relative;
-    margin-bottom: 0;
-    background-color: $color__uiuc-blue;
-    width: 100%;
-    margin-top: 0;
-}
-
-.repository-header {
-    font-family: "Garamond", "Times New Roman", Times, Serif;
-    font-size: 45px;
-    color: $color__uiuc-blue;
-    background-color: white;
-    padding-left: 15px;
-    margin: 0;
-    width: 100%;
-    border-bottom: 1px solid $color__uiuc-orange;
-}
-
-.repository-header > a:link, .repository-header > a:visited, .repository-header > a:hover, .repository-header > a:active {
-    color: $color__uiuc-blue;
-    text-decoration: none;
-    background-color: white;
-}
-
-a.footer-link {
-    color: $color__darkest-grey;
-}
-
-footer .text-block {
-    margin: 8px 0;
-    line-height: 1.3;
-}
-.copyright-footer {
-    background-color: $color__uiuc_blue;
-    border-top: 5px solid $color__light-grey;
-    color: $color__text-light;
-    font-size: .7em;
-    min-height: 90px;
-    padding: 15px;
-    text-align:center
-}
-
-.footer-block-top-space {
-    margin-top:15px;
-}
-
-.footer-icon-social {
-    border: 1px solid #BCBCBC;
-    padding: .2em;
-    min-width: 25px;
-    margin-bottom: .2em;
-}
-
-.footer-info {
-    background-color: $color__lightest-grey;
-    padding-bottom: 20px;
-}
-
-.footerheading {
-    color: $color__navy;
-    display: block;
-    font-size: 1em;
-    font-weight: bold;
-    letter-spacing: inherit;
-    margin-bottom:0px;
-    margin-top: 20px;
-    text-decoration: none;
-    text-transform: none;
-}
-
-.text-block {
-    display:block;
-}
+@import "repository";

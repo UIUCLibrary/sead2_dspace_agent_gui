@@ -1,15 +1,20 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Sead2 DSpace Agent
+    %meta{charset: 'utf-8'}
+    %meta{'http-equiv': 'x-ua-compatible', content: 'ie=edge'}
+    %meta{viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
+    %meta{name: 'application-name', content: 'SEAD IDEALS Deposit Queue'}
+    %meta{name: 'description', content: 'Move research objects from SEAD into a DSpace repository.'}
+
+    %title SEAD IDEALS Deposit Queue
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
     = favicon_link_tag
   %body
     = render partial: 'shared/library_header'
-    = render partial: 'shared/header'
+    = render partial: 'shared/header_navbar'
     = render partial: 'shared/flash', flash: flash
     .container-fluid
       = yield

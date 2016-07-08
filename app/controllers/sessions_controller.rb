@@ -3,6 +3,15 @@ class SessionsController < ApplicationController
   # This is contained within omniauth.
   skip_before_action :verify_authenticity_token
 
+  def new
+    session[:referer] = request.env['HTTP_REFERER']
+    if Rails.env.production?
+      redirect_to(shibboleth_login_path(Sead2DspaceAgentGui::Application.shibboleth_host))
+    else
+      redirect_to('/auth/developer')
+    end
+  end
+
   ##
   # Responds to POST /auth/:provider/callback
   #
@@ -21,16 +30,8 @@ class SessionsController < ApplicationController
   def destroy
     unset_current_user
     clear_and_return_return_path
-    redirect_to root_url, :notice => 'Signed out!'
-  end
-
-  def new
-    session[:referer] = request.env['HTTP_REFERER']
-    if Rails.env.production?
-      redirect_to(shibboleth_login_path(Sead2DspaceAgentGui::Application.shibboleth_host))
-    else
-      redirect_to('/auth/developer')
-    end
+    flash['success'] = 'Signed out!'
+    redirect_to root_url
   end
 
   protected

@@ -283,10 +283,6 @@ $dropDown: false;
 
 /* begin Button styling  */
 
-a.btn {
-  color: #fff;
-}
-
 .btn-signin {
   color: #fff !important;
   text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
@@ -343,6 +339,7 @@ a.btn {
 }
 
 .btn-danger {
+  color: #fff !important;
   background-color: #c02c2c;
   border-color: #c02c2c;
 }
@@ -372,6 +369,7 @@ fieldset[disabled] .btn-danger.active {
 }
 
 .btn-primary {
+  color: #fff !important;
   background-color: #265191;
   border-color: #265191;
 }
@@ -401,6 +399,7 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-success {
+  color: #fff !important;
   background-color: #488222;
   border-color: #488222;
 }
@@ -429,6 +428,7 @@ fieldset[disabled] .btn-success.active {
 
 
 .btn-info {
+  color: #fff !important;
   background-color: #c86128;
   border-color: #c86128;
 }
@@ -458,6 +458,7 @@ fieldset[disabled] .btn-info.active {
 }
 
 .btn-warning {
+  color: #fff !important;
   background-color: #F47F24;
   border-color: #F47F24;
 }

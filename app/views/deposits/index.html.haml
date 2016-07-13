@@ -1,44 +1,21 @@
 %h1 Deposits
 %p
   = link_to 'Sync Deposits', '/sync', class: 'btn btn-warning'
-%table.table.table-striped#deposits
-  %thead
-    %tr
-      %th Title
-      %th Creators
-      %th Creation date
-      %th License
-      %th Rights Holder
-      %th Abstract
 
-      %th{:colspan => '3'}
-  %tbody
-    - @deposits.each do |deposit|
-      %tr
-        %td= deposit.title
-        %td= deposit.creator.map{|str| str}.join(',')
-        %td= deposit.created.to_datetime
-        %td= deposit.license
-        %td= deposit.rights_holder
-        %td= deposit.abstract
-
-        %td= link_to 'Show', deposit
-        %td= link_to 'Edit', edit_deposit_path(deposit)
-        %td= link_to 'Destroy', deposit, method: :delete, data: { confirm: 'Are you sure?' }
-
-:javascript
-  $(function() {
-    $('.deposits').DataTable({
-      // ajax: ...,
-      // autoWidth: false,
-      // pagingType: 'full_numbers',
-      // processing: true,
-      // serverSide: true,
-      // Optional, if you want full pagination controls.
-      // Check dataTables documentation to learn more about available options.
-      // http://datatables.net/reference/option/pagingType
-    });
-  })
--#Status API Training Shop Blog About
-
--# :onclick => submit_deposit_path,
+.row
+  .col-sm-12
+    %h2 Deposits Awaiting Approval
+    %ul.deposit-list
+      - @deposits.each do |deposit|
+        %li.deposit-item
+          .deposit-description
+            .deposit-title
+              = link_to deposit.title, deposit
+            .deposit-info
+              %span.author
+                = deposit.creator.map{|str| str}.join(', ')
+              %span.publisher-date
+                %span.date
+                  = "(#{deposit.created.strftime('%F')})"
+            .deposit-abstract
+              = deposit.abstract[0]

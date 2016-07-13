@@ -11,16 +11,14 @@ class DepositsController < ApplicationController
   # GET /deposits/1.json
   def show
     @deposit = Deposit.find( params[:id] )
+    @research_object = @deposit.research_objects.first # TODO: make sure there will only be one of these!!!
+    @aggregated_resources = @research_object.aggregated_resources
     t = true
   end
 
   # GET /deposits/new
   def new
     @deposit = Deposit.new
-  end
-
-  # GET /deposits/1/edit
-  def edit
   end
 
   # POST /deposits
@@ -66,17 +64,37 @@ class DepositsController < ApplicationController
   # POST /deposits/1/accept
   def accept
     @deposit = Deposit.find(params[:id])
+    @research_object = @deposit.research_objects.first # TODO: make sure there will only be one of these!!!
+    @aggregated_resources = @research_object.aggregated_resources
     # if accept = true then run code to process the ro
     # else run code to reject it
-    if :accept == true
-      sead_api = SeadApi.new
-      dspace_connection = DspaceConnection.new
-      ro = sead_api.get_ro
+    if @deposit.update(deposit_params)
 
+      if @deposit.deposit_license_accepted
 
+        #TODO: send RO to dspace!
+
+        redirect_to deposits_url, notice: "Deposit #{@deposit.id} accepted!"
+      else
+        flash['error'] = 'You must grant the IDEALS Distribution License in order to deposit!'
+        respond_to do |format|
+          format.html { render :show }
+          format.json { render json: @deposit.errors, status: :unprocessable_entity }
+        end
+        render :show
+      end
+
+    else
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @deposit.errors, status: :unprocessable_entity }
+      end
     end
+  end
 
-    redirect_to deposits_url, notice: "Deposit #{@deposit.id} accepted!"
+  def reject
+    @deposit = Deposit.find( params[:id] )
+    redirect_to deposits_url, notice: "Deposit #{@deposit.id} rejected!"
   end
 
 
@@ -88,6 +106,6 @@ class DepositsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def deposit_params
-    params.require(:deposit).permit(:email, :title, :creator, :creation, :abstract, :project_url, :status)
+    params.require(:deposit).permit(:deposit_license_accepted)
   end
 end

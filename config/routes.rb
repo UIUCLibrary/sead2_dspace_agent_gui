@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :deposits do
     post :accept, on: :member, as: :accept
+    post :reject, on: :member, as: :reject
   end
 
   root 'deposits#index'

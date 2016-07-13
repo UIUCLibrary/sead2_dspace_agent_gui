@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  uploaded_by: MyString
+  is_version_of: MyString
+  title: MyString
+  size: MyString
+  similar_to: MyString
+  label: MyString
+  identifier: MyString
+  sha512: MyString
+
+two:
+  uploaded_by: MyString
+  is_version_of: MyString
+  title: MyString
+  size: MyString
+  similar_to: MyString
+  label: MyString
+  identifier: MyString
+  sha512: MyString

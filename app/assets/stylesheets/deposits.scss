@@ -1,3 +1,42 @@
 // Place all the styles related to the deposits controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.deposit-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.deposit-item {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.deposit-title {
+  font-size: 123.1%;
+}
+
+.deposit-info {
+  color: #006621;
+}
+
+.deposit-show-authors {
+  font-size: 123.1%;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 2px;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+h2.deposit-show {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-top: 40px;
+}
+
+td.field-label {
+  text-align: right;
+  font-weight: bold;
+  width: 10em;
+}

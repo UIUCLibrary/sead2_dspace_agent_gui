@@ -1,0 +1,93 @@
+/ Modal
+#UIUCLicenseModal.modal.fade{'aria-hidden' => 'true', 'aria-labelledby' => 'UIUCLicenseModal', :role => 'dialog', :style => 'display: none;', :tabindex => '-1'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{'aria-label' => 'Close', 'data-dismiss' => 'modal', :type => 'button'}
+          %span{'aria-hidden' => 'true'} ×
+        %h2#myModalLabel.modal-title IDEALS Distribution License
+      .modal-body
+        %p
+          In order for IDEALS to reproduce, translate and distribute your submission worldwide, your agreement to
+          the following terms is necessary. Please take a moment to read the terms of this license. By clicking
+          "I Grant the License", you indicate that you grant the following terms of the license. See the IDEALS
+          Copyright Policy for more information.
+        %p
+          If you have any concerns or questions about this license, we suggest that you contact the IDEALS Staff
+          to resolve them.
+        .well{style: 'overflow-y: scroll; height: 15em;'}
+          %h3 IDEALS Deposit Agreement: Non-Exclusive Distribution and Preservation License
+          %p
+            To properly administer the Illinois Digital Environment for Access to Learning and Scholarship (IDEALS)
+            and preserve the contents for future use, the Board of Trustees of the University of Illinois on behalf
+            of its Urbana-Champaign campus (the "University") requires certain permissions and warrants from you,
+            the author(s) and/or copyright owner. If you are the copyright owner, by accepting this license, you
+            still retain copyright to your work and do not give up the right to submit the work to publishers or
+            other repositories. If you are not the copyright owner, you represent that the copyright owner has given
+            you permission to deposit the work.
+          %p
+            %strong
+              By accepting (clicking through) this license, you grant to the University the non-exclusive right to
+              reproduce, translate (as described below), and distribute the submission, including the descriptive
+              information (metadata) and abstract, in any format or medium worldwide and royalty-free, including, but
+              not limited to, publication over the Internet, except as provided for by an addendum to this agreement.
+          %p
+            When provided, the University will clearly identify your name(s) as the author(s) or copyright owner(s) of
+            the submission as well as the name(s) of the copyright owner(s) if different from your name(s), include a
+            statement of your copyright, and will not make any alteration, other than as allowed by this license, to
+            your submission.
+          %p
+            You agree that the University may translate the submission to any medium or format for the purposes of
+            security, back-up, and preservation. You agree that the University may make multiple copies of the
+            submission for the purposes of security, back-up, and preservation.
+          %p
+            %strong
+              If you cannot make all of the following representations, then you shall contact the IDEALS Staff at
+              %a{:href => 'mailto:ideals-gen@illinois.edu'} ideals-gen@illinois.edu
+              before proceeding further. In order to make this submission, you represent that:
+          %ol
+            %li
+              You have the right to grant the rights contained in the license.
+            %li
+              This submission does not, to the best of your knowledge, infringe on anyone's copyright or other
+              intellectual property rights.
+            %li
+              If the submission does contain material for which you do not hold copyright and that exceeds fair use,
+              you have obtained the unrestricted permission of the copyright owner to grant the University the rights
+              required by this license and that such third-party owned material is clearly identified and acknowledged
+              within the text or content of the submission.
+            %li
+              The submission does not contain any confidential information, proprietary information of others or
+              export controlled information.
+            %li
+              There are not any restrictions or required publication delays on the distribution of the submission by
+              the University.
+            %li
+              The information you provide about the submission is accurate.
+          %p
+            %strong
+              You understand that if copyright terms for, or ownership of, the submission change, it is your
+              responsibility to notify the University of these changes.
+          %p
+            %strong
+              You understand that you may request that the submission be withdrawn from IDEALS, and, in such an event,
+              the descriptive information (metadata) will be retained and a copy of the submission will be retained in
+              a 'dark archive' where it is no longer publicly accessible. The exception to this is requests to withdraw
+              theses and dissertations electronically deposited with the Graduate College; in those cases, you
+              understand that you must contact the Graduate College at
+              %a{:href => 'mailto:thesis@illinois.edu'} thesis@illinois.edu
+              to make such a request.
+          %p
+            If the submission is based upon work that has been sponsored or supported by an agency or organization
+            other than the University, you must fulfill any right of review or other obligations required by the
+            contract or agreement with such an agency or organization before depositing into IDEALS.
+          %p
+            By accepting this license, you acknowledge that you have read and agreed to the terms of this agreement
+            and all related IDEALS and University policies.
+        %p
+          Distribution license:
+        = label_tag do
+          = check_box_tag 'licenseAgreement', required: true
+          I Grant the License
+      .modal-footer
+        %button.btn.btn-default{'data-dismiss' => 'modal', :type => 'button'} Close

@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527173326) do
+ActiveRecord::Schema.define(version: 20160708204106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "aggregated_resources", force: :cascade do |t|
+    t.string   "uploaded_by"
+    t.string   "is_version_of"
+    t.string   "title"
+    t.string   "size"
+    t.string   "similar_to"
+    t.string   "label"
+    t.string   "identifier"
+    t.string   "sha512"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "research_object_id"
+    t.string   "mime_type"
+  end
+
+  add_index "aggregated_resources", ["research_object_id"], name: "index_aggregated_resources_on_research_object_id", using: :btree
 
   create_table "deposits", force: :cascade do |t|
     t.string   "title"
@@ -30,6 +47,23 @@ ActiveRecord::Schema.define(version: 20160527173326) do
     t.string   "identifier"
     t.string   "ore_url"
   end
+
+  create_table "research_objects", force: :cascade do |t|
+    t.string  "identifier"
+    t.string  "ore_url"
+    t.string  "uploaded_by"
+    t.string  "is_version_of"
+    t.string  "title"
+    t.string  "topic"
+    t.string  "similar_to"
+    t.string  "creator"
+    t.text    "abstract"
+    t.date    "publication_date"
+    t.string  "publishing_project"
+    t.integer "deposit_id"
+  end
+
+  add_index "research_objects", ["deposit_id"], name: "index_research_objects_on_deposit_id", using: :btree
 
   create_table "statuses", force: :cascade do |t|
     t.datetime "date"
@@ -51,5 +85,7 @@ ActiveRecord::Schema.define(version: 20160527173326) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
+  add_foreign_key "aggregated_resources", "research_objects"
+  add_foreign_key "research_objects", "deposits"
   add_foreign_key "statuses", "deposits"
 end

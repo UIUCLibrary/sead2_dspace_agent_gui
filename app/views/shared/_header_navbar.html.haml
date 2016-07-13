@@ -1,58 +1,42 @@
 %div{'data-no-turbolink' => ''}
   / Static navbar
   %nav.navbar.navbar-default
-    .navbar-header
-      %button.navbar-toggle.collapsed{'aria-controls' => 'navbar', 'aria-expanded' => 'false', 'data-target' => '#navbar', 'data-toggle' => 'collapse', :type => 'button'}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{:href => '/'} SEAD IDEALS Deposit Queue
-    #navbar.navbar-collapse.collapse
-      -#%ul.nav.navbar-nav
-      -#  %li
-      -#    %a{:href => '/datasets/pre_deposit'}
-      -#      %span.glyphicon.glyphicon-plus
-      -#      Deposit Dataset
-      -#  %li
-      -#    %a{:href => '/datasets'}
-      -#      %span.glyphicon.glyphicon-search
-      -#      Find Data
-      -#  %li
-      -#    %a{:href => '/policies'}
-      -#      %span.glyphicon.glyphicon-info-sign
-      -#      Policies
-      -#  %li
-      -#    %a{:href => '/help'}
-      -#      %span.glyphicon.glyphicon-question-sign
-      -#      Help
-      %ul.nav.navbar-nav.navbar-right
-        - if current_user
-          %li= link_to 'Log out', signout_path, class: 'btn btn-signout'
-        - else
-          - if SEAD2_AGENT_CONFIG.has_key?(:local_mode) && SEAD2_AGENT_CONFIG[:local_mode]
-            %li.dropdown
-              %a.dropdown-toggle{'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', :href => '#', :role => 'button'}
-                Log
-                In
-                %span.caret
-              %ul.dropdown-menu.login-form
-                = form_tag '/auth/identity/callback' do
-                  %li
-                    .form-group
-                      = label_tag :auth_key, 'Email', :class => 'control-label'
-                      %br/
-                      = text_field_tag :auth_key
-                  %li
-                    .form-group
-                      = label_tag :password, 'Password', :class => 'control-label'
-                      %br/
-                      = password_field_tag :password
-                  %li
-                    .actions
-                      = submit_tag 'Sign In'
-                      %br/
-                      = link_to 'Create Account', '/auth/identity/register'
+    .container-fluid
+      .navbar-header
+        %button.navbar-toggle.collapsed{'aria-controls' => 'navbar', 'aria-expanded' => 'false', 'data-target' => '#navbar', 'data-toggle' => 'collapse', :type => 'button'}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{:href => '/'} SEAD IDEALS Deposit Queue
+      #navbar.navbar-collapse.collapse
+        %ul.nav.navbar-nav.navbar-right
+          - if current_user
+            %li= link_to 'Log out', signout_path, class: 'btn btn-signout'
           - else
-            %li= link_to 'Log in with NetID', signin_path, class: 'btn btn-signin'
+            - if SEAD2_AGENT_CONFIG.has_key?(:local_mode) && SEAD2_AGENT_CONFIG[:local_mode]
+              %li.dropdown
+                %a.dropdown-toggle{'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', :href => '#', :role => 'button'}
+                  Log
+                  In
+                  %span.caret
+                %ul.dropdown-menu.login-form
+                  = form_tag '/auth/identity/callback' do
+                    %li
+                      .form-group
+                        = label_tag :auth_key, 'Email', :class => 'control-label'
+                        %br/
+                        = text_field_tag :auth_key
+                    %li
+                      .form-group
+                        = label_tag :password, 'Password', :class => 'control-label'
+                        %br/
+                        = password_field_tag :password
+                    %li
+                      .actions
+                        = submit_tag 'Sign In'
+                        %br/
+                        = link_to 'Create Account', '/auth/identity/register'
+            - else
+              %li= link_to 'Log in with NetID', signin_path, class: 'btn btn-signin'
     / /.nav-collapse

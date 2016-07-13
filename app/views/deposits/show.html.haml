@@ -1,16 +1,60 @@
-= form_tag(accept_deposit_path) do
- %h2= @deposit[:title]
- %h4
-  - @deposit[:creator].each do |creator|
-   = creator
- \
- = @deposit[:abstract]
- \
- %div.btn-group.btn-group-vertical
-  = label_tag 'accept_accepted', 'Accept'
-  = radio_button_tag :accept, 'true'
-  = label_tag '', 'Reject'
-  = radio_button_tag :accept, 'false', :checked
+%h1= @deposit[:title]
+.deposit-show-authors
+  = @deposit[:creator].map{|str| str}.join(', ')
 
- = submit_tag 'Submit'
+%h2.deposit-show Identifiers
+.deposit-show-adminmd
+  %table.table.table-striped
+    %tbody
+      %tr
+        %td.field-label Identifier:
+        %td= @deposit[:identifier]
+      %tr
+        %td.field-label Rights Holder:
+        %td= link_to @deposit[:rights_holder], @deposit[:rights_holder]
+      %tr
+        %td.field-label Publication Callback:
+        %td= link_to @deposit[:publication_callback], @deposit[:publication_callback]
+
+%h2.deposit-show Files in this item
+.deposit-show-files
+  %table.table
+    %thead
+      %tr
+        %th File
+        %th Description
+        %th Format
+    %tbody
+      - @aggregated_resources.each do |aggregated_resource|
+        %tr
+          %td= link_to aggregated_resource.title, aggregated_resource.is_version_of
+          %td= aggregated_resource.label
+          %td= aggregated_resource.mime_type
+
+%h2.deposit-show Description
+.deposit-show-metadata
+  %table.table.table-striped
+    %tbody
+      %tr
+        %td.field-label Title:
+        %td= @research_object.title
+      %tr
+        %td.field-label Creator(s):
+        %td= @research_object.creator.map{|str| str}.join(', ')
+      %tr
+        %td.field-label Subject(s):
+        %td
+          - @research_object.topic.each do |topic|
+            = topic
+            %br
+      %tr
+        %td.field-label Abstract:
+        %td= @research_object.abstract[0]
+      %tr
+        %td.field-label ORE ReM:
+        %td= link_to @research_object.ore_url, @research_object.ore_url
+
+= render partial: 'deposit_form'
+
+
 
